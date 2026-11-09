@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Análisis del catálogo – Happy Books Colombia</title>
+  <title>Análisis del catálogo - Happy Books Colombia</title>
   <style>
     :root { color-scheme: light; font-family: Arial, sans-serif; }
     body { margin: 0; background: #f4f7fb; color: #182433; }
@@ -29,33 +29,89 @@
   <section>
     <h2>Resumen del conjunto de datos</h2>
     <div class="cards">
-      <div class="card"><div>Libros analizados</div><div class="value">142</div></div>
-      <div class="card"><div>Precio promedio</div><div class="value">$71.276 COP</div></div>
-      <div class="card"><div>Precio mediano</div><div class="value">$62.150 COP</div></div>
-      <div class="card"><div>Descuento promedio calculable</div><div class="value">27.84%</div></div>
+      <div class="card">
+        <div>Libros analizados</div>
+        <div class="value">142</div>
+      </div>
+      <div class="card">
+        <div>Precio promedio</div>
+        <div class="value">$71.276 COP</div>
+      </div>
+      <div class="card">
+        <div>Precio mediano</div>
+        <div class="value">$62.150 COP</div>
+      </div>
+      <div class="card">
+        <div>Descuento promedio calculable</div>
+        <div class="value">27.84%</div>
+      </div>
     </div>
-    <p class="note">El descuento promedio considera únicamente 67 libros con precio original disponible. Los valores corresponden al momento de la recolección y pueden cambiar en la tienda.</p>
+    <p class="note">
+      El descuento promedio considera únicamente
+      67 libros con precio
+      original disponible. Los valores corresponden al momento de
+      la recolección y pueden cambiar en la tienda.
+    </p>
   </section>
+
   <section style="margin-top:1rem">
     <h2>Distribución de precios actuales</h2>
-    <img src="precios.png" alt="Histograma de precios actuales de los libros">
-    <p class="note">Precio mínimo: $9.900 COP · Precio máximo: $202.800 COP.</p>
+    <img src="precios.png"
+         alt="Histograma de precios actuales de los libros">
+    <p class="note">
+      Precio mínimo: $9.900 COP
+      · Precio máximo: $202.800 COP.
+    </p>
   </section>
+
+  <section style="margin-top:1rem">
+    <h2>Clasificación de libros por rango de precios</h2>
+    <p class="note">
+      Rangos definidos para este análisis: Económico, menos de
+      $30.000 COP; Intermedio, desde $30.000 hasta menos de
+      $60.000 COP; Costoso, desde $60.000 hasta menos de
+      $100.000 COP; Premium, $100.000 COP o más.
+    </p>
+    <img src="categorias_precios.png"
+         alt="Gráfico de clasificación de libros por precio">
+    <table>
+      <thead>
+        <tr>
+          <th>Categoría</th>
+          <th>Cantidad de libros</th>
+          <th>Porcentaje</th>
+        </tr>
+      </thead>
+      <tbody><tr><td>Económico</td><td>5</td><td>3.52%</td></tr><tr><td>Intermedio</td><td>63</td><td>44.37%</td></tr><tr><td>Costoso</td><td>53</td><td>37.32%</td></tr><tr><td>Premium</td><td>21</td><td>14.79%</td></tr></tbody>
+    </table>
+  </section>
+
   <section style="margin-top:1rem">
     <h2>Libros con mayores descuentos calculados</h2>
     <table>
-      <thead><tr><th>Libro</th><th>Autor</th><th>Precio actual</th><th>Descuento</th></tr></thead>
+      <thead>
+        <tr>
+          <th>Libro</th>
+          <th>Autor</th>
+          <th>Precio actual</th>
+          <th>Descuento</th>
+        </tr>
+      </thead>
       <tbody><tr><td>Choque de reyes (Canción de Hielo y Fuego 2)</td><td>George R. R. Martin</td><td>$97.300 COP</td><td>30.0%</td></tr><tr><td>Libro Cadáver Exquisito</td><td>Bazterrica, Agustina</td><td>$45.500 COP</td><td>30.0%</td></tr><tr><td>Frankenstein o el moderno Prometeo (edición cantos tintados)</td><td>Shelley, Mary</td><td>$41.300 COP</td><td>30.0%</td></tr><tr><td>La inteligencia emocional</td><td>Daniel Goleman</td><td>$59.500 COP</td><td>30.0%</td></tr><tr><td>Tormenta de espadas (Canción de Hielo y Fuego 3)</td><td>George R. R. Martin</td><td>$111.300 COP</td><td>30.0%</td></tr><tr><td>Juego de tronos (Canción de Hielo y Fuego 1)</td><td>George R. R. Martin</td><td>$97.300 COP</td><td>30.0%</td></tr><tr><td>Festín de cuervos (Canción de Hielo y Fuego 4)</td><td>George R. R. Martin</td><td>$97.300 COP</td><td>30.0%</td></tr><tr><td>Danza de dragones (Canción de Hielo y Fuego 5)</td><td>George R. R. Martin</td><td>$111.300 COP</td><td>30.0%</td></tr><tr><td>Libro La empleada</td><td>Freida McFadden</td><td>$48.300 COP</td><td>30.0%</td></tr><tr><td>Harry Potter y la piedra filosofal (edición especial con cantos pintados)</td><td>J. K. Rowling</td><td>$69.300 COP</td><td>30.0%</td></tr></tbody>
     </table>
   </section>
+
   <section style="margin-top:1rem">
     <h2>Calidad de los datos</h2>
     <p>URL únicas: 142 de 142 registros.</p>
     <p>Precios actuales válidos: 142.</p>
     <p>Registros sin precio original: 75.</p>
-    <p class="note">Los precios originales ausentes se conservan como datos faltantes; no se interpretan como cero.</p>
+    <p class="note">
+      Los precios originales ausentes se conservan como datos faltantes;
+      no se interpretan como cero.
+    </p>
   </section>
 </main>
-<footer>Proyecto académico – Happy Books Colombia</footer>
+<footer>Proyecto académico - Happy Books Colombia</footer>
 </body>
 </html>

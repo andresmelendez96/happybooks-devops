@@ -101,3 +101,51 @@ def calculate_metrics(df: pd.DataFrame) -> dict[str, Any]:
 def format_cop(value: float) -> str:
     """Formatea un valor numérico como pesos colombianos sin decimales."""
     return f"${value:,.0f}".replace(",", ".") + " COP"
+
+def classify_price_ranges(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clasifica los libros según su precio actual en pesos colombianos.
+
+    Rangos:
+    - Economico: menos de 30.000 COP.
+    - Intermedio: desde 30.000 hasta menos de 60.000 COP.
+    - Costoso: desde 60.000 hasta menos de 100.000 COP.
+    - Premium: 100.000 COP o más.
+
+    Devuelve una copia del DataFrame original con una nueva columna.
+    """
+    if "precio_actual_cop" not in df.columns:
+        raise ValueError("Falta la columna precio_actual_cop.")
+
+    precios = pd.to_numeric(
+        df["precio_actual_cop"],
+        errors="coerce"
+    )
+
+    if precios.isna().any():
+        raise ValueError("Hay precios actuales ausentes o no numericos.")
+
+    if (precios < 0).any():
+        raise ValueError("Se encontraron precios negativos.")
+
+    resultado = df.copy()
+
+    resultado["categoria_precio"] = pd.cut(
+        precios,
+        bins=[
+            float("-inf"),
+            30000,
+            60000,
+            100000,
+            float("inf")
+        ],
+        labels=[
+            "Economico",
+            "Intermedio",
+            "Costoso",
+            "Premium"
+        ],
+        right=False
+    )
+
+    return resultado
