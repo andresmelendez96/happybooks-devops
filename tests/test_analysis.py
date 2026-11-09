@@ -3,8 +3,11 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from happybooks.analysis import calculate_metrics, load_catalog
-
+from happybooks.analysis import (
+    calculate_metrics,
+    classify_price_ranges,
+    load_catalog,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = PROJECT_ROOT / "data" / "catalogo_happy_books.csv"
@@ -55,3 +58,40 @@ def test_no_convierte_precio_original_ausente_en_cero(tmp_path):
 def test_archivo_inexistente_genera_error(tmp_path):
     with pytest.raises(FileNotFoundError):
         load_catalog(tmp_path / "no_existe.csv")
+
+def test_clasifica_correctamente_los_limites_de_precios():
+    datos = pd.DataFrame({
+        "precio_actual_cop": [
+            29999, 30000, 59999,
+            60000, 99999, 100000
+        ]
+    })
+
+    resultado = classify_price_ranges(datos)
+
+    categorias_esperadas = [
+        "Economico",
+        "Intermedio",
+        "Intermedio",
+        "Costoso",
+        "Costoso",
+        "Premium"
+    ]
+
+    assert resultado["categoria_precio"].tolist() == categorias_esperadas
+
+    # Comprobar que el DataFrame original no fue modificado.
+    assert "categoria_precio" not in datos.columns
+
+
+def test_clasifica_todos_los_libros_del_catalogo():
+    df = load_catalog(DATA_FILE)
+
+    resultado = classify_price_ranges(df)
+
+    assert len(resultado) == 142
+    assert resultado["categoria_precio"].notna().all()
+
+    cantidades = resultado["categoria_precio"].value_counts()
+
+    assert cantidades.sum() == 142
