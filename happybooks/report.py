@@ -163,7 +163,7 @@ def build_html(
 </head>
 <body>
 <header>
-  <h1>Análisis del catálogo de Happy Books Colombia</h1>
+  <h1>SIMULACIÓN DE ERROR - Happy Books Colombia</h1>
   <p>Proyecto académico de análisis de datos y flujo de trabajo DevOps.</p>
 </header>
 <main>
